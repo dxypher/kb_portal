@@ -23,6 +23,14 @@
   </head>
 
   <body>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "flash #{name}" %>
+    <% end %>
+    <% if current_user %>
+      <%= link_to 'Logout', logout_path, data: {turbo_method: :delete} %>
+    <% else %>
+      <%= link_to 'Login', login_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

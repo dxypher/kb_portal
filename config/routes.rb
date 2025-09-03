@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :teams, only: :index
   resources :docs, only: :index
 
-  get "/login", to: "session#new"
-  post "/login", to: "session#create"
-  delete "/logout", to: "session#destroy"
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
