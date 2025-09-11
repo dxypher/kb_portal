@@ -26,35 +26,33 @@ RSpec.describe 'Docs', type: :request do
     end
   end
 
-  # describe "GET /docs/:id" do
-  #   it "shows a team doc" do
-  #     team   = create(:team)
-  #     user   = create(:user)
-  #     create(:membership, user:, team:)
-  #     doc    = create(:doc, team:, title: "Team Doc")
+  describe "GET /docs/:id" do
+    it "shows a team doc" do
+      team = create(:team)
+      user = create(:user, password: "password123", password_confirmation: "password123")
+      create(:membership, user:, team:)
+      doc  = create(:doc, team:, title: "Team Doc")
 
-  #     get "/docs/#{doc.id}", env: sign_in(user)
+      post login_path, params: { email: user.email, password: "password123" }
+      get "/docs/#{doc.id}"
 
-  #     expect(response).to be_successful
-  #     expect(response.body).to include("Team Doc")
-  #   end
+      expect(response).to be_successful
+      expect(response.body).to include("Team Doc")
+    end
 
-  #   it "raises 404 when accessing another team's doc" do
-  #     team_a = create(:team)
-  #     team_b = create(:team)
-  #     user   = create(:user)
-  #     create(:membership, user:, team: team_a)
+    it "raises 404 when accessing another team's doc" do
+      team_a = create(:team)
+      team_b = create(:team)
+      user   = create(:user, password: "password123", password_confirmation: "password123")
+      create(:membership, user:, team: team_a)
 
-  #     other_doc = create(:doc, team: team_b)
+      other_doc = create(:doc, team: team_b)
 
-  #     expect {
-  #       get "/docs/#{other_doc.id}", env: sign_in(user)
-  #     }.to raise_error(ActiveRecord::RecordNotFound)
-  #     # If you rescue and render 404 instead, assert:
-  #     # get "/docs/#{other_doc.id}", env: sign_in(user)
-  #     # expect(response).to have_http_status(:not_found)
-  #   end
-  # end
+      post login_path, params: { email: user.email, password: "password123" }
+      get "/docs/#{other_doc.id}"
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 
   describe "logging out" do
     it "clears access to /docs" do
