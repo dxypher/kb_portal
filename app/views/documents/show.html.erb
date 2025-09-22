@@ -1,0 +1,9 @@
+<h1><%= @document.title %></h1>
+<p><%= @document.body %></p>
+
+<%= button_to "Summaries", doc_summaries_path(@document), method: :post %>
+
+<h2>Summaries</h2>
+<% @document.summaries.order(created_at: :desc).each do |summary| %>
+  <p><%= summary.content %></p>
+<% end %>

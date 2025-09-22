@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :doc do
+  factory :document do
     team
     title { 'Onboarding' }
     body { 'Welcome!' }

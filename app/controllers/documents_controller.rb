@@ -1,9 +1,9 @@
-class DocsController < ApplicationController
+class DocumentsController < ApplicationController
   before_action :require_login
   before_action :set_docs, only: [ :show ]
 
   def index
-    @documents = current_team.docs
+    @documents = current_team.documents
   end
 
   def show
@@ -12,6 +12,6 @@ class DocsController < ApplicationController
   private
 
   def set_docs
-    @document = current_team.docs.find(params[:id])
+    @document = current_team.documents.find(params[:id])
   end
 end
