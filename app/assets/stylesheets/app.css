@@ -1,0 +1,7 @@
+/* app/assets/stylesheets/app.css */
+.flash { padding: 10px; margin: 8px 0; border-radius: 6px; }
+.flash.notice { background: #e8f5e9; color: #1b5e20; }
+.flash.alert  { background: #ffebee; color: #b71c1c; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+.navbar a { margin-right: 12px; }
+.navbar .right form { display: inline; } /* keep button inline */

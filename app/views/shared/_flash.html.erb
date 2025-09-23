@@ -1,0 +1,5 @@
+<!-- app/views/shared/_flash.html.erb -->
+<% flash.each do |type, msg| %>
+  <% next if msg.blank? %>
+  <div class="flash <%= type %>"><%= msg %></div>
+<% end %>

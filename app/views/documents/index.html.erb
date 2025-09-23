@@ -1,7 +1,12 @@
+<!-- app/views/documents/index.html.erb -->
 <h1>Documents</h1>
 
-<ul>
-  <% @documents.each do |doc| %>
-    <li><%= doc.title %></li>
-  <% end %>
-</ul>
+<% if @documents.any? %>
+  <ul>
+    <% @documents.each do |doc| %>
+      <li><%= link_to doc.title, document_path(doc) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No documents yet — add one from the console or seeds.</p>
+<% end %>

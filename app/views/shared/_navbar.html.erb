@@ -1,0 +1,16 @@
+<!-- app/views/shared/_navbar.html.erb -->
+<nav class="navbar">
+  <div class="left">
+    <%= link_to "Teams", teams_path %>
+    <%= link_to "Documents", documents_path %>
+  </div>
+
+  <div class="right">
+    <% if current_user %>
+      <span><%= current_user.email %></span>
+      <%= button_to "Logout", logout_path, method: :delete, form: { data: { turbo_confirm: "Log out?" } } %>
+    <% else %>
+      <%= link_to "Login", login_path %>
+    <% end %>
+  </div>
+</nav>
